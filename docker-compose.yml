@@ -1,0 +1,58 @@
+name: patient-management-system
+services:
+  ui:
+    command:
+      - sh
+      - -c
+      - npm install && npm run dev -- --host 0.0.0.0 --port 5173
+    depends_on:
+      web:
+        condition: service_started
+        required: true
+    image: node:20-alpine
+    networks:
+      default: null
+    ports:
+      - mode: ingress
+        target: 5173
+        published: "5173"
+        protocol: tcp
+    restart: unless-stopped
+    volumes:
+      - type: bind
+        source: /Users/swelanauguste/Developer/Patient-Management-System/paitent-crud-ui
+        target: /usr/src/ui
+        bind: {}
+      - type: volume
+        target: /usr/src/ui/node_modules
+        volume: {}
+    working_dir: /usr/src/ui
+  web:
+    build:
+      context: /Users/swelanauguste/Developer/Patient-Management-System/app
+      dockerfile: Dockerfile
+    command:
+      - python
+      - manage.py
+      - runserver
+      - 0.0.0.0:8000
+    environment:
+      DJANGO_SUPERUSER_EMAIL: kingship@mail.com
+      DJANGO_SUPERUSER_PASSWORD: kingship
+      DJANGO_SUPERUSER_USERNAME: kingship
+    networks:
+      default: null
+    ports:
+      - mode: ingress
+        target: 8000
+        published: "8000"
+        protocol: tcp
+    restart: unless-stopped
+    volumes:
+      - type: bind
+        source: /Users/swelanauguste/Developer/Patient-Management-System/app
+        target: /usr/src/app
+        bind: {}
+networks:
+  default:
+    name: patient-management-system_default
