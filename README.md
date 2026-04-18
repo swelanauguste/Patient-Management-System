@@ -18,7 +18,7 @@ This project runs two development services with Docker Compose:
 From the repository root, run:
 
 ```bash
-docker compose -f docker-compse.yml up --build
+docker compose docker-compose.yml up --build
 ```
 
 Then open:
