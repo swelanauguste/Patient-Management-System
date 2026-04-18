@@ -60,7 +60,7 @@ export default function App() {
     })();
   }, []);
 
-  // When selecting an existing person, load into the same form (cohesive UX)
+  // When selecting an existing patient, load into the same form (cohesive UX)
   useEffect(() => {
     if (selectedId === "new") {
       setForm({
@@ -148,7 +148,7 @@ export default function App() {
       return;
     }
 
-    const ok = confirm(`Delete person ${selectedId}?`);
+    const ok = confirm(`Delete patient ${selectedId}?`);
     if (!ok) return;
 
     try {
@@ -189,7 +189,7 @@ export default function App() {
           </div>
           <div className="row">
             <label>
-              Select person
+              Select patient
               <select
                 className="form-select mt-2"
                 style={{ width: "" }}
