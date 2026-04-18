@@ -1,0 +1,46 @@
+GET http://localhost:8000/api/patients/24 HTTP/1.1
+content-type: application/json
+
+###
+
+GET http://localhost:8000/api/patients/21 HTTP/1.1
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzc2NDg4NzQxLCJpYXQiOjE3NzY0ODg0NDEsImp0aSI6IjlkMzZmOGQ5NjI3MDQ5ZmU4ZDI3OGYyMGEwZGY5ZDkzIiwidXNlcl9pZCI6IjEifQ.1t95lUOB0t83MoFWrDIPcF8TYr8lb08fjAj0uFEqtfE
+
+###
+
+POST http://localhost:8000/api/patients/ HTTP/1.1
+content-type: application/json
+# Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzc2NDg4NzQxLCJpYXQiOjE3NzY0ODg0NDEsImp0aSI6IjlkMzZmOGQ5NjI3MDQ5ZmU4ZDI3OGYyMGEwZGY5ZDkzIiwidXNlcl9pZCI6IjEifQ.1t95lUOB0t83MoFWrDIPcF8TYr8lb08fjAj0uFEqtfE
+
+{
+    "first_name": "Swelan",
+    "last_name": "Auguste",
+    "middle_name": "Rod",
+    "gender": "M",
+    "age": 37
+}
+
+###
+
+PUT http://localhost:8000/api/patients/21/ HTTP/1.1
+content-type: application/json
+# Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzc2NDg4NzQxLCJpYXQiOjE3NzY0ODg0NDEsImp0aSI6IjlkMzZmOGQ5NjI3MDQ5ZmU4ZDI3OGYyMGEwZGY5ZDkzIiwidXNlcl9pZCI6IjEifQ.1t95lUOB0t83MoFWrDIPcF8TYr8lb08fjAj0uFEqtfE
+
+{
+    "first_name": "Swelan",
+    "last_name": "Auguste",
+    "middle_name": "Rodney",
+    "gender": "M",
+    "age": 37
+}
+
+###
+
+POST http://localhost:8000/api/token/ HTTP/1.1
+content-type: application/json
+
+{
+    "username": "kingship",
+    "password": "kingship"
+}
