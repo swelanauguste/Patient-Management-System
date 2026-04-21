@@ -36,10 +36,10 @@ services:
       - manage.py
       - runserver
       - 0.0.0.0:8000
-    environment:
-      DJANGO_SUPERUSER_EMAIL: kingship@mail.com
-      DJANGO_SUPERUSER_PASSWORD: kingship
-      DJANGO_SUPERUSER_USERNAME: kingship
+    expose:
+      - 8000
+    env_file:
+      - ./.env
     networks:
       default: null
     ports:
@@ -53,6 +53,24 @@ services:
         source: /Users/swelanauguste/Developer/Patient-Management-System/app
         target: /usr/src/app
         bind: {}
+  db:
+    image: postgres:17-bookworm
+    container_name: patient_management_system
+    restart: unless-stopped
+    env_file:
+      - ./.env
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER}"]
+      interval: 10s
+      retries: 5
+      timeout: 5s
 networks:
   default:
     name: patient-management-system_default
+
+volumes:
+  postgres_data:
